@@ -1,0 +1,4 @@
+.env
+*.sql.bak
+*.zip
+.DS_Store
