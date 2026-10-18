@@ -1,0 +1,1174 @@
+:root {
+    --rl-bg: #080b10;
+    --rl-bg-soft: #0d1118;
+    --rl-card: rgba(18, 24, 34, 0.88);
+    --rl-card-strong: #121822;
+    --rl-border: rgba(255, 255, 255, 0.09);
+    --rl-border-hover: rgba(255, 255, 255, 0.17);
+    --rl-text: #f4f7fb;
+    --rl-muted: #97a3b4;
+    --rl-accent: #ef3340;
+    --rl-accent-hover: #ff4652;
+    --rl-purple: #8b5cf6;
+    --rl-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    --rl-radius: 22px;
+    --rl-radius-sm: 13px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--rl-bg);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    text-align: center;
+    background:
+        radial-gradient(circle at 15% 0%, rgba(239, 51, 64, 0.12), transparent 32rem),
+        radial-gradient(circle at 85% 10%, rgba(139, 92, 246, 0.08), transparent 28rem),
+        var(--rl-bg);
+    color: var(--rl-text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.6;
+}
+
+header,
+footer {
+    background: rgba(8, 11, 16, 0.82);
+    color: var(--rl-text);
+    border-color: var(--rl-border);
+}
+
+header {
+    border-bottom: 1px solid var(--rl-border);
+}
+
+footer {
+    border-top: 1px solid var(--rl-border);
+}
+
+.page-shell {
+    width: min(1400px, calc(100% - 28px));
+    margin: 0 auto;
+    padding: 52px 0 64px;
+}
+
+.leaderboard-hero {
+    max-width: 820px;
+    margin: 0 auto 30px;
+    padding: 18px 16px;
+}
+
+.hero-kicker,
+.popup-kicker {
+    color: var(--rl-accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.leaderboard-hero h1 {
+    margin: 5px 0 8px;
+    color: var(--rl-text);
+    font-size: clamp(2.25rem, 6vw, 4.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+}
+
+.leaderboard-hero p {
+    max-width: 680px;
+    margin: 0 auto;
+    color: var(--rl-muted);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+}
+
+.leaderboard-actions {
+    margin-top: 24px;
+}
+
+.main-container {
+    width: 100%;
+    margin: 0;
+}
+
+.leaderboard-card {
+    width: 100%;
+    padding: clamp(16px, 3vw, 32px);
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(20, 27, 38, 0.93), rgba(13, 17, 24, 0.96));
+    border: 1px solid var(--rl-border);
+    border-radius: var(--rl-radius);
+    box-shadow: var(--rl-shadow);
+    backdrop-filter: blur(14px);
+}
+
+.results-container {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.track-table {
+    display: block;
+    width: 100%;
+    margin: 0 0 28px;
+    overflow-x: auto;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--rl-border);
+    border-radius: 16px;
+}
+
+.track-table:last-child {
+    margin-bottom: 0;
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    margin: 28px auto 24px;
+}
+
+.track-button,
+.popup-btn,
+.close-btn,
+.submit-btn {
+    appearance: none;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: #fff;
+    font-family: inherit;
+    font-weight: 750;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.track-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 10px 18px;
+    background: rgba(239, 51, 64, 0.13);
+    border-color: rgba(239, 51, 64, 0.36);
+    color: #fff;
+    font-size: 0.98rem;
+}
+
+.track-button:hover {
+    transform: translateY(-2px);
+    background: rgba(239, 51, 64, 0.22);
+    border-color: rgba(239, 51, 64, 0.65);
+    box-shadow: 0 10px 24px rgba(239, 51, 64, 0.12);
+}
+
+.track-button:active {
+    transform: translateY(0);
+}
+
+.fastest {
+    background: rgba(139, 92, 246, 0.18) !important;
+    border-color: rgba(139, 92, 246, 0.55) !important;
+    color: #f5f0ff !important;
+}
+
+.popup-btn {
+    padding: 11px 20px;
+    background: var(--rl-accent);
+    border-color: var(--rl-accent);
+    font-size: 0.95rem;
+    box-shadow: 0 10px 25px rgba(239, 51, 64, 0.2);
+}
+
+.popup-btn:hover,
+.submit-btn:hover {
+    transform: translateY(-2px);
+    background: var(--rl-accent-hover);
+    border-color: var(--rl-accent-hover);
+}
+
+table {
+    width: 100%;
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--rl-text);
+    font-size: 0.95rem;
+}
+
+th,
+td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--rl-border);
+}
+
+th {
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+td {
+    color: #dbe2ec;
+}
+
+tbody tr {
+    transition: background-color 0.18s ease;
+}
+
+tbody tr:hover {
+    background: rgba(255, 255, 255, 0.035);
+}
+
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.popup-form {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    padding: 22px;
+    background: rgba(1, 3, 7, 0.78);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    width: min(520px, 100%);
+    max-height: calc(100vh - 44px);
+    overflow-y: auto;
+    padding: 26px;
+    background: #111720;
+    color: var(--rl-text);
+    border: 1px solid var(--rl-border-hover);
+    border-radius: 20px;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+    text-align: left;
+}
+
+.popup-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.popup-header h2 {
+    margin: 2px 0 0;
+    color: #fff;
+    font-size: 1.65rem;
+    line-height: 1.15;
+}
+
+.modal-x {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 auto;
+    border: 1px solid var(--rl-border);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.modal-x:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.popup-content label {
+    display: block;
+    margin: 13px 0 6px;
+    color: #cbd5e1;
+    font-size: 0.86rem;
+    font-weight: 700;
+}
+
+.popup-content input,
+.popup-content select,
+.popup-content textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    background: #0a0f16;
+    color: #fff;
+    border: 1px solid var(--rl-border-hover);
+    border-radius: 11px;
+    outline: none;
+    font: inherit;
+}
+
+.popup-content input:focus,
+.popup-content select:focus,
+.popup-content textarea:focus {
+    border-color: rgba(239, 51, 64, 0.8);
+    box-shadow: 0 0 0 3px rgba(239, 51, 64, 0.12);
+}
+
+.submit-btn {
+    display: inline-flex;
+    justify-content: center;
+    margin: 18px 8px 0 0;
+    padding: 10px 20px;
+    background: var(--rl-accent);
+}
+
+.close-btn {
+    display: inline-flex;
+    justify-content: center;
+    margin: 18px 0 0;
+    padding: 10px 20px;
+    background: transparent;
+    border-color: var(--rl-border-hover);
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 760px) {
+    .page-shell {
+        width: min(100% - 18px, 1400px);
+        padding-top: 30px;
+    }
+
+    .button-container {
+        grid-template-columns: 1fr;
+    }
+
+    .leaderboard-card {
+        padding: 12px;
+        border-radius: 16px;
+    }
+
+    th,
+    td {
+        padding: 11px 12px;
+        white-space: nowrap;
+    }
+}
+/* ==========================================
+   REALMLABS ADMIN LOGIN
+   ========================================== */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(220, 30, 40, 0.12),
+            transparent 40%
+        ),
+        #0c0e12;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+
+    padding: 40px;
+
+    background: #15181e;
+
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.03);
+
+    text-align: center;
+}
+
+.login-brand {
+    margin-bottom: 15px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: #e4303b;
+}
+
+.login-card h1 {
+    margin: 0 0 10px;
+
+    color: #ffffff;
+}
+
+.login-card p {
+    margin-bottom: 30px;
+
+    color: #9ba1aa;
+}
+
+.login-field {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.login-field label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #c9cdd4;
+
+    font-size: 14px;
+}
+
+.login-field input {
+    box-sizing: border-box;
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+
+    background: #0e1014;
+
+    color: white;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+.login-field input:focus {
+    border-color: #e4303b;
+
+    box-shadow:
+        0 0 0 3px rgba(228,48,59,0.12);
+}
+
+.login-btn {
+    width: 100%;
+
+    padding: 14px 20px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: #e4303b;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    filter: brightness(1.1);
+}
+
+.login-error {
+    margin-bottom: 20px;
+
+    padding: 12px;
+
+    border: 1px solid rgba(255,60,60,0.25);
+    border-radius: 10px;
+
+    background: rgba(255,60,60,0.08);
+
+    color: #ff7b83;
+}
+
+.login-back {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    color: #8f96a1;
+
+    text-decoration: none;
+}
+
+.login-back:hover {
+    color: white;
+}
+
+
+/* ==========================================
+   ADMIN CONTROLS
+   ========================================== */
+
+.admin-controls {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.logout-btn {
+    display: inline-block;
+
+    padding: 10px 20px;
+
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 999px;
+
+    background: #1b1e24;
+
+    color: #ccc;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.logout-btn:hover {
+    background: #262a31;
+
+    color: white;
+}
+/* ==========================================
+   SITE HEADER / REALMLABS-STYLE PILLS
+   ========================================== */
+.site-header {
+    padding: 14px 0;
+}
+
+.site-header-inner {
+    width: min(1400px, calc(100% - 28px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.site-title {
+    color: var(--rl-text);
+    text-decoration: none;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 850;
+    letter-spacing: -0.02em;
+}
+
+.auth-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 9px;
+}
+
+.signed-in-user {
+    color: var(--rl-muted);
+    font-size: 0.86rem;
+    font-weight: 700;
+}
+
+.rl-pill,
+.login-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 8px 17px;
+    border: 1px solid var(--rl-accent);
+    border-radius: 999px;
+    background: var(--rl-accent);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 800;
+    line-height: 1;
+    transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.rl-pill:hover,
+.login-secondary:hover {
+    transform: translateY(-1px);
+    background: var(--rl-accent-hover);
+    border-color: var(--rl-accent-hover);
+}
+
+.rl-pill-ghost {
+    background: transparent;
+    border-color: rgba(239, 51, 64, 0.5);
+    color: #fff;
+}
+
+.rl-pill-ghost:hover {
+    background: rgba(239, 51, 64, 0.13);
+    border-color: var(--rl-accent);
+}
+
+.login-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 22px;
+}
+
+.login-secondary {
+    width: 100%;
+    min-height: 42px;
+    margin-bottom: 4px;
+    background: transparent;
+    border-color: rgba(239, 51, 64, 0.45);
+}
+
+.login-back {
+    margin-top: 10px;
+}
+
+@media (max-width: 620px) {
+    .site-header-inner {
+        width: min(100% - 18px, 1400px);
+        align-items: flex-start;
+    }
+
+    .auth-nav {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .signed-in-user {
+        width: 100%;
+        text-align: right;
+    }
+
+    .rl-pill {
+        min-height: 34px;
+        padding: 7px 13px;
+        font-size: 0.8rem;
+    }
+}
+
+
+/* User approval administration */
+.login-success,.admin-notice{padding:12px 14px;margin:0 0 18px;border:1px solid rgba(72,199,116,.35);border-radius:12px;background:rgba(72,199,116,.09);color:#d9ffe6}
+.admin-shell{max-width:1180px}
+.admin-card{padding:0;overflow:hidden}
+.admin-table-wrap{overflow-x:auto}
+.admin-table{width:100%;border-collapse:collapse;min-width:900px}
+.admin-table th,.admin-table td{padding:14px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:middle}
+.admin-table th{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#aab0bc}
+.admin-actions{display:flex;gap:8px;align-items:center;margin:0;flex-wrap:wrap}
+.admin-actions .rl-pill{border:0;cursor:pointer;font:inherit}
+.admin-badge{display:inline-block;margin-left:6px;padding:3px 7px;border-radius:999px;font-size:.65rem;font-weight:800;letter-spacing:.07em;background:#fff;color:#111}
+.status-pill{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:.75rem;font-weight:700}
+.status-approved{background:rgba(72,199,116,.14);color:#8ff0af;border:1px solid rgba(72,199,116,.3)}
+.status-pending{background:rgba(255,193,7,.12);color:#ffd66b;border:1px solid rgba(255,193,7,.28)}
+.rl-pill-danger{background:rgba(255,70,70,.12)!important;color:#ff9a9a!important;border:1px solid rgba(255,70,70,.28)!important}
+
+/* ==========================================
+   GAME TABS
+   ========================================== */
+.game-tabs {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--rl-border);
+    border-radius: 999px;
+}
+
+.game-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 8px 20px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: var(--rl-muted);
+    font-size: 0.92rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.game-tab:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-1px);
+}
+
+.game-tab.active {
+    color: #fff;
+    background: var(--rl-accent);
+    border-color: var(--rl-accent);
+    box-shadow: 0 8px 22px rgba(239, 51, 64, 0.18);
+}
+
+.table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 14px;
+}
+
+.empty-state {
+    margin: 24px 0 8px;
+    color: var(--rl-muted);
+}
+
+@media (max-width: 520px) {
+    .game-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        border-radius: 18px;
+    }
+
+    .game-tab {
+        padding-inline: 12px;
+    }
+}
+
+/* ==========================================
+   LEADERBOARD BRAND ICON + INDIVIDUAL GAME PILLS
+   ========================================== */
+.leaderboard-brand-icon {
+    display: block;
+    width: clamp(82px, 13vw, 118px);
+    height: auto;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.42));
+}
+
+/* Override the earlier segmented-tab treatment: each game is its own pill. */
+.game-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+.game-tab {
+    min-height: 42px;
+    padding: 9px 20px;
+    border: 1px solid rgba(239, 51, 64, 0.52);
+    border-radius: 999px;
+    background: rgba(239, 51, 64, 0.07);
+    color: #fff;
+    box-shadow: none;
+}
+
+.game-tab:hover {
+    color: #fff;
+    background: rgba(239, 51, 64, 0.14);
+    border-color: rgba(239, 51, 64, 0.82);
+}
+
+.game-tab.active {
+    color: #fff;
+    background: var(--rl-accent);
+    border-color: var(--rl-accent);
+    box-shadow: 0 9px 24px rgba(239, 51, 64, 0.2);
+}
+
+@media (max-width: 520px) {
+    .game-tabs {
+        display: flex;
+        width: auto;
+    }
+
+    .game-tab {
+        padding-inline: 16px;
+    }
+}
+
+/* ==========================================
+   V4 HERO BANNER + COMPACT TOP NAVIGATION
+   ========================================== */
+.site-header {
+    padding: 11px 0;
+    background: rgba(8, 11, 16, 0.96);
+    backdrop-filter: blur(14px);
+}
+
+.site-header-inner {
+    width: min(1400px, calc(100% - 28px));
+}
+
+.top-game-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-width: 0;
+}
+
+.top-game-pill,
+.top-add-time {
+    min-height: 38px;
+    padding: 8px 17px;
+    background: transparent;
+    border-color: rgba(239, 51, 64, 0.52);
+    color: #fff;
+    white-space: nowrap;
+}
+
+.top-game-pill:hover,
+.top-add-time:hover {
+    background: rgba(239, 51, 64, 0.13);
+    border-color: var(--rl-accent);
+}
+
+.top-game-pill.active,
+.top-add-time {
+    background: var(--rl-accent);
+    border-color: var(--rl-accent);
+    box-shadow: 0 8px 22px rgba(239, 51, 64, 0.18);
+}
+
+.top-add-time {
+    appearance: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.page-shell {
+    width: min(1400px, calc(100% - 28px));
+    padding-top: 22px;
+}
+
+.leaderboard-hero.banner-hero {
+    max-width: none;
+    margin: 0 auto 26px;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--rl-border);
+    border-radius: var(--rl-radius);
+    background: #05070a;
+    box-shadow: var(--rl-shadow);
+}
+
+.banner-hero-image {
+    width: 100%;
+    aspect-ratio: 2048 / 678;
+    display: block;
+    height: auto;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* Old hero controls/text are intentionally no longer used. */
+.leaderboard-brand-icon,
+.leaderboard-hero > .hero-kicker,
+.leaderboard-hero > h1,
+.leaderboard-hero > p,
+.leaderboard-hero > .game-tabs,
+.leaderboard-hero > .leaderboard-actions {
+    display: none;
+}
+
+@media (max-width: 760px) {
+    .site-header-inner {
+        width: min(100% - 18px, 1400px);
+        align-items: center;
+        gap: 10px;
+    }
+
+    .top-game-nav {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+
+    .auth-nav {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+
+    .signed-in-user {
+        width: auto;
+        text-align: center;
+    }
+
+    .page-shell {
+        width: min(100% - 18px, 1400px);
+        padding-top: 14px;
+    }
+
+    .banner-hero-image {
+        background-position: center center;
+    }
+}
+
+@media (max-width: 520px) {
+    .top-game-nav,
+    .auth-nav {
+        gap: 6px;
+    }
+
+    .top-game-pill,
+    .top-add-time,
+    .auth-nav .rl-pill {
+        min-height: 34px;
+        padding: 7px 12px;
+        font-size: 0.78rem;
+    }
+
+    .banner-hero-image {
+        aspect-ratio: 16 / 9;
+        background-position: center center;
+    }
+}
+
+/* === Red Bull F1 + GT-R R35 hero/footer update === */
+.site-footer-banner {
+    width: min(1400px, calc(100% - 28px));
+    margin: 28px auto 24px;
+    padding: 0;
+    overflow: hidden;
+    background: transparent;
+    border: 1px solid var(--rl-border);
+    border-radius: var(--rl-radius);
+    box-shadow: var(--rl-shadow);
+}
+
+.footer-banner-image {
+    width: 100%;
+    aspect-ratio: 1520 / 139;
+    display: block;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 760px) {
+    .site-footer-banner {
+        width: min(100% - 18px, 1400px);
+        border-radius: 16px;
+    }
+
+    .footer-banner-image {
+        background-position: center;
+    }
+}
+\n\n/* ==========================================\n   V6 MOBILE RESPONSIVE PASS\n   Desktop styles above remain unchanged.\n   ========================================== */\n@media (max-width: 760px) {\n    body {\n        overflow-x: hidden;\n    }\n\n    .site-header {\n        padding: 9px 0;\n    }\n\n    .site-header-inner {\n        display: grid;\n        grid-template-columns: 1fr auto;\n        gap: 8px 10px;\n    }\n\n    .top-game-nav {\n        display: flex;\n        flex-wrap: wrap;\n        justify-content: flex-start;\n        gap: 7px;\n        min-width: 0;\n    }\n\n    .auth-nav {\n        justify-content: flex-end;\n        align-self: start;\n        gap: 7px;\n    }\n\n    .top-add-time {\n        order: 3;\n    }\n\n    .page-shell {\n        padding-bottom: 34px;\n    }\n\n    .leaderboard-hero.banner-hero {\n        margin-bottom: 16px;\n        border-radius: 16px;\n    }\n\n    .banner-hero-image {\n        width: 100%;\n        height: clamp(210px, 53vw, 330px);\n        aspect-ratio: auto;\n        object-fit: cover;\n        object-position: 50% 50%;\n    }\n\n    .leaderboard-card {\n        padding: 14px 10px;\n    }\n\n    .results-container h2 {\n        margin: 8px 8px 18px;\n        font-size: clamp(1.15rem, 5vw, 1.45rem);\n        line-height: 1.25;\n    }\n\n    .table-scroll {\n        width: 100%;\n        overflow-x: auto;\n        overscroll-behavior-inline: contain;\n        -webkit-overflow-scrolling: touch;\n        border: 1px solid var(--rl-border);\n        border-radius: 12px;\n    }\n\n    .table-scroll table {\n        min-width: 620px;\n    }\n\n    .table-scroll th,\n    .table-scroll td {\n        padding: 11px 12px;\n        white-space: nowrap;\n    }\n\n    .popup-form {\n        padding: 10px;\n        align-items: flex-end;\n    }\n\n    .popup-content {\n        width: 100%;\n        max-height: calc(100dvh - 20px);\n        padding: 20px 16px 16px;\n        border-radius: 18px;\n    }\n\n    .popup-header {\n        margin-bottom: 14px;\n    }\n\n    .lap-time-input {\n        display: grid;\n        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(84px, .75fr);\n        align-items: center;\n        gap: 6px;\n    }\n\n    .lap-time-input input,\n    .lap-time-input select {\n        min-width: 0;\n        width: 100%;\n    }\n\n    .submit-btn,\n    .close-btn {\n        min-height: 44px;\n    }\n\n    .site-footer-banner {\n        margin-top: 18px;\n        margin-bottom: 14px;\n    }\n\n    .footer-banner-image {\n        width: 100%;\n        height: clamp(112px, 29vw, 170px);\n        aspect-ratio: auto;\n        object-fit: cover;\n        object-position: 50% 50%;\n    }\n}\n\n@media (max-width: 520px) {\n    .site-header-inner {\n        grid-template-columns: 1fr;\n    }\n\n    .top-game-nav,\n    .auth-nav {\n        width: 100%;\n        justify-content: center;\n    }\n\n    .top-game-nav {\n        display: grid;\n        grid-template-columns: minmax(0, auto) minmax(0, auto);\n    }\n\n    .top-add-time {\n        grid-column: 1 / -1;\n        justify-self: center;\n        min-width: 154px;\n    }\n\n    .signed-in-user {\n        max-width: 42vw;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n    }\n\n    .banner-hero-image {\n        height: clamp(205px, 61vw, 270px);\n    }\n\n    .leaderboard-card {\n        border-radius: 14px;\n    }\n\n    .table-scroll table {\n        min-width: 560px;\n        font-size: 0.88rem;\n    }\n\n    .popup-content {\n        padding: 18px 14px 14px;\n    }\n\n    .popup-header h2 {\n        font-size: 1.4rem;\n    }\n\n    .lap-time-input {\n        grid-template-columns: 1fr 1fr;\n    }\n\n    .lap-time-input > :nth-child(2),\n    .lap-time-input > :nth-child(4) {\n        display: none;\n    }\n\n    .lap-time-input input[name='milliseconds'] {\n        grid-column: 1 / -1;\n    }\n\n    .submit-btn,\n    .close-btn {\n        width: 100%;\n        margin: 10px 0 0;\n    }\n\n    .login-page {\n        padding: 16px;\n    }\n\n    .login-card {\n        padding: 28px 20px;\n        border-radius: 16px;\n    }\n\n    .site-footer-banner {\n        border-radius: 14px;\n    }\n\n    .footer-banner-image {\n        height: 126px;\n    }\n}\n\n@media (max-width: 360px) {\n    .top-game-pill,\n    .top-add-time,\n    .auth-nav .rl-pill {\n        padding-inline: 10px;\n        font-size: 0.74rem;\n    }\n\n    .banner-hero-image {\n        height: 200px;\n    }\n\n    .footer-banner-image {\n        height: 118px;\n    }\n}\n
+
+/* ==========================================
+   V7 MOBILE HERO FIT + 20 ENTRY DISPLAY
+   Preserve desktop presentation; phones show
+   the complete hero artwork without cropping.
+   ========================================== */
+@media (max-width: 760px) {
+    .leaderboard-hero.banner-hero {
+        background: #07090d;
+        overflow: hidden;
+    }
+
+    .banner-hero-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1520 / 398;
+        object-fit: contain;
+        object-position: center;
+    }
+}
+
+@media (max-width: 520px) {
+    .banner-hero-image {
+        height: auto;
+        aspect-ratio: 1520 / 398;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 360px) {
+    .banner-hero-image {
+        height: auto;
+    }
+}
+
+
+/* ==========================================
+   V9 MOBILE TABLE CLEANUP
+   ========================================== */
+@media (max-width: 600px) {
+    .table-scroll table {
+        min-width: 470px;
+    }
+}
+
+/* ==========================================
+   V10 TABLE ALIGNMENT + COMPACT FOOTER GAP
+   ========================================== */
+.page-shell {
+    padding-bottom: 14px;
+}
+
+.site-footer-banner {
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+.table-scroll table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table-scroll th,
+.table-scroll td {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.table-scroll th:nth-child(1),
+.table-scroll td:nth-child(1) {
+    width: 32%;
+}
+
+.table-scroll th:nth-child(2),
+.table-scroll td:nth-child(2) {
+    width: 40%;
+}
+
+.table-scroll th:nth-child(3),
+.table-scroll td:nth-child(3) {
+    width: 28%;
+}
+
+@media (max-width: 760px) {
+    .page-shell {
+        padding-bottom: 8px;
+    }
+
+    .site-footer-banner {
+        margin-top: 6px;
+        margin-bottom: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .table-scroll table {
+        min-width: 440px;
+    }
+
+    .table-scroll th:nth-child(1),
+    .table-scroll td:nth-child(1) {
+        width: 30%;
+    }
+
+    .table-scroll th:nth-child(2),
+    .table-scroll td:nth-child(2) {
+        width: 44%;
+    }
+
+    .table-scroll th:nth-child(3),
+    .table-scroll td:nth-child(3) {
+        width: 26%;
+    }
+}
+
+/* ==========================================
+   V11 MOBILE NO-SWIPE TABLE
+   Preserve desktop alignment from V10.
+   ========================================== */
+@media (max-width: 600px) {
+    .table-scroll {
+        overflow-x: hidden;
+    }
+
+    .table-scroll table {
+        width: 100%;
+        min-width: 0 !important;
+        table-layout: fixed;
+        font-size: 0.84rem;
+    }
+
+    .table-scroll th,
+    .table-scroll td {
+        padding: 10px 7px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .table-scroll th:nth-child(1),
+    .table-scroll td:nth-child(1) {
+        width: 29%;
+        white-space: nowrap;
+    }
+
+    .table-scroll th:nth-child(2),
+    .table-scroll td:nth-child(2) {
+        width: 45%;
+    }
+
+    .table-scroll th:nth-child(3),
+    .table-scroll td:nth-child(3) {
+        width: 26%;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 360px) {
+    .table-scroll table {
+        font-size: 0.79rem;
+    }
+
+    .table-scroll th,
+    .table-scroll td {
+        padding: 9px 5px;
+    }
+}
+
+/* Public release: no third-party racing artwork required */
+.public-hero { width:100%; padding:3.5rem 1.5rem; text-align:center; border-radius:18px; background:linear-gradient(115deg,#141e30,#3a1740,#181b29); color:#fff; }
+.public-hero span{font-size:.75rem;letter-spacing:.18em;opacity:.75}.public-hero h1{font-size:clamp(1.7rem,5vw,3.2rem);letter-spacing:.06em;margin:.8rem 0}.public-hero p{opacity:.84}
+.site-footer-banner {padding:2rem;text-align:center;color:#bbb;min-height:0}
+
+/* RC3 personal-best ranking and circuit selector */
+.ranking-section,.recent-section{margin:0 0 2rem}
+.ranking-note{color:#aeb9c9;text-align:center;margin:-.4rem auto 1.3rem}
+.track-filter{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.8rem;margin:1rem 0 1.5rem}
+.track-filter label{font-weight:700}
+.track-filter select,.track-filter button{border:1px solid #526078;background:#182230;color:#fff;border-radius:8px;padding:.7rem 1rem;max-width:100%}
+.track-filter button{cursor:pointer;background:#324466}
+.ranking-table th:first-child,.ranking-table td:first-child{width:14%;text-align:center}
+.ranking-table th:nth-child(2),.ranking-table td:nth-child(2){width:46%;text-align:left}
+.ranking-table th:nth-child(3),.ranking-table td:nth-child(3){width:40%;text-align:left}
+
+/* RC4: confirmation and validation feedback after lap submission */
+.lap-alert { max-width: 1000px; margin: 15px auto; padding: 14px 18px; border-radius: 8px; font-weight: 600; }
+.lap-alert-success { background: #123626; color: #b9f8d1; border: 1px solid #26774c; }
+.lap-alert-error { background: #411d27; color: #ffd1d8; border: 1px solid #a14459; }
